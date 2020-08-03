@@ -10,19 +10,21 @@ import di.service.MemberRegisterService;
 @Configuration
 public class JavaConfig {
 
-	@Bean
+	//@Bean(name = "dao")
+	//@Bean("dao")
+	@Bean(name = "dao")
 	public MemberDao memberDao() {
 		return new MemberDao();
 	}
-
-	@Bean
+	
+	@Bean("regSvc")
 	public MemberRegisterService memberRegSvc() {
 		return new MemberRegisterService(memberDao());
 	}
-
-	@Bean
-	public ChangePasswordService memberPwSvc() {
+	
+	@Bean //없으면 메서드 이름이 들어간다.  changePwSvc 
+	public ChangePasswordService changePwSvc() {
 		return new ChangePasswordService(memberDao());
 	}
-
+	
 }
